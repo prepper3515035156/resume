@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>求职急诊室 · 从写简历到过面试</title>
+<style>
+:root{
+  --ink:#182733; --sub:#5a6b78; --line:#e3e7ea; --bg:#f4f6f7;
+  --accent:#0e7c86; --accent-soft:#e6f2f3; --warn:#b3590e; --ok:#2c7a4b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Microsoft YaHei",-apple-system,"PingFang SC",sans-serif;background-color:var(--bg);background-image:linear-gradient(180deg,#e3ecee,var(--bg) 320px);background-repeat:no-repeat;color:var(--ink);line-height:1.65}
+.top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:linear-gradient(90deg,#0e7c86,#bf5b16 38%,#6f5bb8 66%,#33689e)}
+.top-in{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#0e7c86,#33689e);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px}
+nav{display:flex;gap:6px;margin-left:auto}
+nav button{border:1px solid transparent;background:none;padding:8px 14px;border-radius:9px;cursor:pointer;font-size:14px;color:var(--sub)}
+nav button.on{background:#e6f2f3;color:#0e7c86;font-weight:600;border-color:#cfe3e5}
+nav button[data-t="clinic"].on{background:#fdeee0;color:#bf5b16;border-color:#ecd0b5}
+nav button[data-t="optimize"].on{background:#f0ecfa;color:#6f5bb8;border-color:#d8cef0}
+nav button[data-t="interview"].on{background:#e8f0f9;color:#33689e;border-color:#c3d7ec}
+main{max-width:1180px;margin:0 auto;padding:26px 20px 60px}
+/* 模块主色：工坊青 / 诊断橙 / 优化紫 / 面试蓝 */
+#tab-resume{--accent:#0e7c86;--accent-soft:#e6f2f3}
+#tab-clinic{--accent:#bf5b16;--accent-soft:#fdeee0}
+#tab-optimize{--accent:#6f5bb8;--accent-soft:#f0ecfa}
+#tab-interview{--accent:#33689e;--accent-soft:#e8f0f9}
+#diagResult h3,#o_result h3{color:var(--accent)}
+h2.page{font-size:22px;margin-bottom:6px;border-left:5px solid var(--accent);padding-left:11px}
+p.lede{color:var(--sub);font-size:14px;margin-bottom:22px;max-width:820px}
+p.lede b{color:var(--accent)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:16px}
+.tip{background:#fbf8f2;border:1px solid #efe6d4;color:#7a5a1e;border-radius:10px;padding:10px 14px;font-size:12.5px;margin-top:10px}
+.tip b{color:var(--warn)}
+label{display:block;font-size:13px;font-weight:600;margin:14px 0 5px}
+label i{font-style:normal;font-weight:400;color:var(--sub);font-size:12px}
+input[type=text],input[type=email],input[type=tel],textarea,select{width:100%;border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:14px;font-family:inherit;background:#fcfdfd}
+textarea{resize:none;overflow-y:auto;min-height:70px}
+input:focus,textarea:focus,select:focus{outline:2px solid #bcd9dc;border-color:var(--accent)}
+.btn{border:none;border-radius:9px;padding:9px 20px;font-size:14px;cursor:pointer;background:var(--accent);color:#fff;font-weight:600}
+.btn.ghost{background:#fff;color:var(--accent);border:1px solid #bcd9dc}
+.btn.small{padding:5px 12px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:860px){.row2{grid-template-columns:1fr}.layout{grid-template-columns:1fr!important}}
+
+/* ── 照片 / 附件 ── */
+.photo-box{display:flex;gap:10px;align-items:center;border:1px dashed #c9d6da;border-radius:10px;padding:10px;margin:10px 0 2px;background:#fafdfd;flex-wrap:wrap}
+.photo-box img{width:54px;height:72px;object-fit:cover;border-radius:6px;border:1px solid var(--line);background:#eef1f2}
+.drop-hint{font-size:11.5px;color:var(--sub);margin-top:4px;line-height:1.5}
+.jobpick{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+.jg{position:relative}
+.jg-btn{border:1px solid var(--line);background:#fff;border-radius:999px;font-size:12px;padding:2px 11px;cursor:pointer;color:var(--sub)}
+.jg-btn:hover{border-color:var(--accent);color:var(--accent)}
+.jg-btn.has{background:var(--accent-soft);color:var(--accent);border-color:#cfe3e5;font-weight:600}
+.jg-pop{display:none;position:absolute;top:calc(100% + 6px);left:0;z-index:40;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 28px rgba(20,40,60,.15);padding:10px;width:min(320px,86vw);flex-wrap:wrap;gap:6px}
+.jg.open .jg-pop{display:flex}
+@media(hover:hover){.jg:hover .jg-pop{display:flex}}
+.jg:nth-last-child(-n+3) .jg-pop{left:auto;right:0}
+.qb{border:1px solid var(--line);background:#fff;border-radius:999px;font-size:12px;padding:2px 10px;cursor:pointer;color:var(--sub)}
+.qb:hover{border-color:var(--accent);color:var(--accent)}
+.qb.on{background:var(--accent-soft);color:var(--accent);border-color:#cfe3e5;font-weight:600}
+.fileStat{display:flex;gap:12px;align-items:center;font-size:12.5px;color:var(--sub);margin-top:12px;flex-wrap:wrap;background:#fafdfd;border:1px dashed #d5e0e3;border-radius:10px;padding:10px 14px}
+.fileStat img{max-height:64px;border:1px solid var(--line);border-radius:6px}
+textarea.dragover{border-color:var(--accent);background:#f0f8f9}
+
+/* ── Tab1 布局 ── */
+.layout{display:grid;grid-template-columns:400px 1fr;gap:18px;align-items:start}
+.formcol .exp{border:1px dashed var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;position:relative}
+.formcol .exp .del{position:absolute;top:8px;right:10px;color:#c25b5b;background:none;border:none;cursor:pointer;font-size:12px}
+.previewcol{position:sticky;top:76px}
+/* 简历纸 */
+.paper{position:relative;background:#fff;border:1px solid var(--line);box-shadow:0 6px 24px rgba(20,40,60,.08);padding:36px 42px;min-height:600px;border-radius:4px;font-size:13px}
+.paper .photo{position:absolute;top:34px;right:42px;width:84px;height:112px;object-fit:cover;border:1px solid var(--line);border-radius:4px;background:#eef1f2}
+.paper .nm{font-size:22px;font-weight:700;letter-spacing:1px}
+.paper .jt{color:var(--accent);font-weight:600;margin:2px 0 6px}
+ .paper .cbox{border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:14px}
+ .paper .ct{color:var(--sub);font-size:12px}
+ .paper .ct2{color:var(--sub);font-size:12px;margin-top:2px}
+ .paper .kbadge{display:inline-block;font-size:10.5px;background:var(--accent-soft);color:var(--accent);border-radius:5px;padding:0 6px;margin-left:6px;vertical-align:1px}
+.paper h3{font-size:13.5px;border-left:3px solid var(--accent);padding-left:8px;margin:16px 0 6px;letter-spacing:1px}
+.paper ul{list-style:none}
+.paper ul li{padding:1.5px 0 1.5px 10px;position:relative}
+.paper ul li:before{content:"";position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--accent)}
+.paper .ph{color:#b9c3ca;font-style:italic}
+.paper .chips{display:flex;flex-wrap:wrap;gap:6px}
+.paper .chips span{background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:2px 9px;font-size:12px}
+
+/* ── Tab2 诊断 ── */
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.dgrid{grid-template-columns:1fr}}
+.result{display:grid;grid-template-columns:330px 1fr;gap:20px;align-items:start}
+@media(max-width:900px){.result{grid-template-columns:1fr}}
+.scorebar{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding:5px 0;font-size:13.5px}
+.scorebar b.low{color:var(--warn)}
+.dim-note{color:var(--sub);font-size:12px}
+.checkbox{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin:5px 0;cursor:pointer}
+.stat{font-size:13px;color:var(--sub);margin-top:8px}
+
+/* ── Tab3 优化室 ── */
+.opt-card{border:1px solid #e3d9bd;background:#fffdf6;border-radius:12px;padding:12px 14px;margin:12px 0}
+.opt-orig{font-size:13.5px;line-height:1.7;margin-bottom:8px;word-break:break-word}
+.opt-orig .hl{background:#fbe3e3;color:#b04a4a;border-radius:4px;padding:0 3px;font-weight:600}
+.opt-tag{display:inline-block;font-size:11px;border-radius:6px;padding:1px 8px;margin:0 4px 6px 0;background:#f6ecd6;color:#8a6d2f}
+.opt-fix{border-left:3px solid #8f7cc9;background:#f4f1fb;border-radius:0 8px 8px 0;padding:8px 12px;font-size:13px;line-height:1.7;margin-top:6px;word-break:break-word}
+.opt-sum{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12.5px;margin:2px 0 4px}
+.opt-sum b{background:#f0e8f4;color:#7a4a86;border-radius:6px;padding:1px 8px;font-weight:600}
+
+/* ── Tab4 面试 ── */
+.flow{display:flex;flex-wrap:wrap;gap:8px;font-size:12.5px;margin-bottom:14px}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--sub)}
+.flow b{color:var(--ink);font-weight:600}
+#chatwrap{max-width:760px;margin:0 auto}
+/* ── 虚拟面试官形象 / 状态条 / 结束按钮 ── */
+.ivstage{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid #c3d7ec;border-radius:16px;padding:12px 16px;margin:0 auto 14px;box-shadow:0 4px 16px rgba(51,104,158,.08);flex-wrap:wrap}
+.ivface{flex:none;width:60px;height:60px;border-radius:50%;background:linear-gradient(160deg,#dce9f6,#b8cfe8);overflow:hidden;border:2px solid #fff;box-shadow:0 2px 10px rgba(51,104,158,.25)}
+.ivface svg{width:100%;height:100%;display:block;animation:ivbob 3.2s ease-in-out infinite}
+@keyframes ivbob{0%,100%{transform:translateY(0)}50%{transform:translateY(1.5px)}}
+.ivblink{transform-box:fill-box;transform-origin:center;animation:ivblink 4.6s infinite}
+@keyframes ivblink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.ivmeta{flex:1;min-width:170px}
+.ivmeta .nm2{font-size:15px;font-weight:700;color:var(--accent)}
+.ivmeta .ivrole{font-size:11.5px;color:#7d95b5;font-weight:400;margin-left:8px}
+.ivmeta .st2{font-size:12.5px;color:var(--sub);margin-top:3px;display:flex;align-items:center;gap:8px;min-height:16px}
+.ivwave{display:none;align-items:center;height:12px;gap:2.5px}
+.ivwave.on{display:inline-flex}
+.ivwave i{width:3px;height:12px;border-radius:2px;background:#6f9cc9;animation:wv .9s infinite ease-in-out}
+.ivwave i:nth-child(2){animation-delay:.15s}
+.ivwave i:nth-child(3){animation-delay:.3s}
+.ivwave i:nth-child(4){animation-delay:.45s}
+@keyframes wv{0%,100%{transform:scaleY(.22)}50%{transform:scaleY(1)}}
+.ivend{flex:none;border:1.5px solid #e3b7b2;background:#fdf6f5;color:#b04a4a;border-radius:9px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.ivend:hover{background:#f9e8e6;border-color:#d59a93}
+.ivrep{display:inline-block;width:24px;height:24px;vertical-align:-5px;margin-right:3px}
+.ivrep svg{width:100%;height:100%;display:block}
+.chat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;height:520px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.msg{display:flex;gap:10px;max-width:92%}
+.msg .ava{width:34px;height:34px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:16px}
+.msg.iv .ava{background:linear-gradient(160deg,#dce9f6,#b8cfe8);overflow:hidden}
+.msg .ava svg{width:100%;height:100%;display:block}
+.msg.me{align-self:flex-end;flex-direction:row-reverse}
+.msg.me .ava{background:var(--accent);color:#fff;font-size:13px}
+.msg .body{background:#f2f5f6;border-radius:4px 14px 14px 14px;padding:10px 14px;font-size:14px}
+.msg.me .body{background:var(--accent);color:#fff;border-radius:14px 4px 14px 14px}
+.msg .body .qtag{display:inline-block;font-size:11px;background:#e8eef0;color:var(--sub);border-radius:5px;padding:1px 7px;margin-bottom:5px}
+.fbc{border:1px solid #ccd9ee;background:#f6f9fd;border-radius:12px;padding:12px 14px;font-size:13px;margin-top:8px;width:100%}
+.fbc h5{font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.fbc .skl{color:#8a7340}
+.typing span{display:inline-block;width:5px;height:5px;border-radius:50%;background:#9fb3bd;margin:0 1px;animation:blink 1s infinite}
+.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+#ansbox{max-width:760px;margin:12px auto 0;display:flex;gap:10px;align-items:flex-start}
+#ansbox textarea{min-height:96px}
+.report{max-width:760px;margin:0 auto}
+.statbars .sb{display:grid;grid-template-columns:110px 1fr 90px;align-items:center;gap:10px;font-size:12.5px;margin:6px 0}
+.sb .track{background:#edf1f2;border-radius:99px;height:8px}
+.sb .fill{background:var(--accent);height:8px;border-radius:99px}
+footer{max-width:1180px;margin:0 auto;padding:18px 20px 40px;color:#9aa7b0;font-size:12px;border-top:1px solid var(--line)}
+
+/* ── 手机适配 ── */
+@media(max-width:640px){
+  main{padding:16px 12px 50px}
+  .card{padding:16px 14px}
+  .paper{padding:22px 18px;font-size:12.5px}
+  .paper .photo{top:16px;right:16px;width:64px;height:86px}
+  .top-in{padding:10px 12px;gap:8px}
+  .logo{font-size:16px}
+  nav{width:100%;margin-left:0}
+  nav button{padding:7px 10px;font-size:13px}
+  p.lede{font-size:13px}
+  h2.page{font-size:19px}
+  .chat{height:420px;padding:14px}
+  .msg{max-width:95%}
+  #ansbox{flex-direction:column;align-items:stretch}
+  #ansbox>div:last-child{flex-direction:row;width:100%}
+  #ansbox>div:last-child .btn{flex:1}
+  .result{grid-template-columns:1fr}
+  .dgrid{grid-template-columns:1fr}
+  .fbc{font-size:12.5px}
+  .statbars .sb{grid-template-columns:84px 1fr 78px;font-size:12px}
+}
+
+@media print{
+  .noprint,h2.page,p.lede{display:none!important}
+  body{background:#fff}
+  .layout{display:block}
+  .paper{box-shadow:none;border:none;padding:0;margin:0 auto;max-width:720px}
+  .paper .photo{top:10px;right:14px}
+  main{padding:0;max-width:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top noprint"><div class="top-in">
+  <div class="logo"><div class="mark">🩺</div>求职急诊室</div>
+  <nav id="tabs">
+    <button data-t="resume" class="on">① 简历工坊</button>
+    <button data-t="clinic">② 诊断台</button>
+    <button data-t="optimize">③ 简历优化室</button>
+    <button data-t="interview">④ 面试模拟间</button>
+  </nav>
+</div></header>
+
+<main>
+
+<!-- ══════════ Tab 1 简历工坊 ══════════ -->
+<section id="tab-resume">
+  <h2 class="page">简历工坊 · 从零写出你的第一份简历</h2>
+  <p class="lede">左边填，右边实时生成简历——<b>目标是让 HR 20 秒内想给你面试</b>。填完点「打印」即成品。</p>
+  <div class="layout">
+    <div class="formcol card noprint">
+      <div class="tip" style="margin:0 0 4px"><b>没经历是错觉：</b>课程作业、社团、比赛都算经历，用「做了什么 + 结果」写出来。</div>
+
+      <div class="photo-box">
+        <img id="photoThumb" alt="证件照" hidden>
+        <div style="flex:1;min-width:160px">
+          <div style="font-weight:600;font-size:13px">证件照（可选）</div>
+          <div class="drop-hint">1 寸免冠照（JPG/PNG ≤8MB），只存本页内存。</div>
+        </div>
+        <input type="file" id="photoFile" accept="image/*" hidden>
+        <button class="btn ghost small" id="photoBtn">上传照片</button>
+        <button class="btn ghost small" id="photoDel" hidden>移除</button>
+      </div>
+
+      <label>基本信息</label>
+      <div class="row2"><input id="f_name" type="text" placeholder="姓名：李小白"><input id="f_age" type="text" placeholder="年龄 21（可选）"></div>
+      <div class="row2" style="margin-top:8px">
+        <input id="f_phone" type="tel" placeholder="手机号">
+        <input id="f_mail" type="email" placeholder="邮箱">
+      </div>
+      <div class="row2" style="margin-top:8px">
+        <input id="f_politics" type="text" placeholder="政治面貌（可选）：共青团员 / 党员 / 群众">
+        <select id="f_avail"><option value="">到岗时间（选填）</option><option>可随时到岗</option><option>一周内到岗</option><option>两周内到岗</option><option>一个月内到岗</option></select>
+      </div>
+
+      <label>求职意向 <i>（悬停/点开分类选职位，最多 3 个；也可手填）</i></label>
+      <input id="f_intent" type="text" placeholder="期望职位：店员 / 客服 / 前端开发…">
+      <div id="jobPick" class="jobpick"></div>
+      <div class="row2" style="margin-top:10px">
+        <select id="f_worktype"><option value="">工作性质（选填）</option><option>全职</option><option>实习</option><option>兼职</option><option>全职/兼职均可</option></select>
+        <input id="f_city" type="text" placeholder="期望城市（可选）">
+      </div>
+      <div class="row2" style="margin-top:8px">
+        <input id="f_salary" type="text" placeholder="期望薪资（可选）：3500–5000 / 面议">
+      </div>
+
+      <label>教育背景 <i>（在校生最重要的底牌，放靠前）</i></label>
+      <div class="row2">
+        <input id="f_school" type="text" placeholder="学校">
+        <input id="f_major" type="text" placeholder="专业">
+      </div>
+      <div class="row2" style="margin-top:8px">
+        <input id="f_eduTime" type="text" placeholder="2022.09 – 2026.06">
+        <input id="f_eduLevel" type="text" placeholder="学历（可选）：本科 / 专科">
+      </div>
+      <div class="row2" style="margin-top:8px">
+        <input id="f_eduExtra" type="text" placeholder="GPA / 排名（可选，不强求）">
+      </div>
+      <input id="f_courses" type="text" style="margin-top:8px" placeholder="主修课程（可选）：数据结构、数据库、计算机网络…">
+
+      <label>经历 <i>（项目 / 实习 / 兼职 / 校园 / 竞赛 / 志愿都算）</i></label>
+      <div id="expList"></div>
+      <button class="btn ghost small" id="addExp" style="margin-top:10px">+ 添加一段经历</button>
+      <div class="tip"><b>公式：</b>项目名（角色）+ 具体做了什么 + 结果（能加数字最好）。没数字先空着，别编。</div>
+
+      <label>技能 <i>（每行一条，写你会的，别写"精通"）</i></label>
+      <textarea id="f_skills" placeholder="HTML / CSS 页面开发&#10;JavaScript 基础&#10;Git 基本使用"></textarea>
+      <div class="tip"><b>铁律：</b>每项技能最好能在经历里找到证据；别写「精通」。</div>
+
+      <label>语言能力 <i>（可选，每行一条）</i></label>
+      <textarea id="f_langs" style="min-height:64px" placeholder="英语 CET-4（能读文档、简单口语）&#10;普通话（二级甲等）"></textarea>
+
+      <label>证书 / 奖项 <i>（可选，每行一条）</i></label>
+      <textarea id="f_awards" placeholder="英语四级&#10;校二等奖学金"></textarea>
+
+      <label>作品 / 链接 <i>（可选，每行一条；有证据的技能才硬）</i></label>
+      <textarea id="f_links" style="min-height:64px" placeholder="github.com/你的仓库&#10;个人作品集 / 演示视频链接"></textarea>
+      <div class="tip"><b>能点开看的链接比一句「精通」值钱十倍；</b>留空则打印时自动隐藏。</div>
+
+      <label>兴趣爱好 <i>（可选，一行；带事实的兴趣才加分）</i></label>
+      <input id="f_hobby" type="text" placeholder="篮球（院队主力）· 摄影（运营过班级公众号）">
+
+      <label>个人优势 <i>（可选，每行一条；红线：只写事实，不写形容词）</i></label>
+      <textarea id="f_self" style="min-height:72px" placeholder="例：连续 2 年组织迎新晚会（500 人规模），负责流程与报销&#10;自学 3 周完成 HTML/CSS，上线过 1 个个人页面"></textarea>
+      <div class="tip"><b>每句 = 一件具体的事 + 结果。</b>「性格开朗」在 HR 眼里等于空白；写不出事例就留空，自动隐藏。</div>
+
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" id="printBtn">🖨 打印 / 存为 PDF</button>
+        <button class="btn ghost" id="saveBtn">💾 导出草稿</button>
+        <button class="btn ghost" id="loadBtn">📥 导入草稿</button>
+        <button class="btn ghost" id="exitBtn">🚪 安全退出</button>
+        <input type="file" id="loadFile" accept=".json,application/json" hidden>
+      </div>
+      <div class="stat">「🚪 安全退出」= 草稿（含照片）自动下载存档 → 再清空页面。本页不自动保存、无服务器记录。</div>
+    </div>
+
+    <div class="previewcol">
+      <div class="paper" id="paper"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ Tab 2 诊断台 ══════════ -->
+<section id="tab-clinic" hidden>
+  <h2 class="page">诊断台 · 六维体检你的简历</h2>
+  <p class="lede">贴文本 / <b>拖入文件</b> / Ctrl+V 粘贴截图均可，解析全在本机、文档不上传。查出问题后去<b>「③ 简历优化室」拿改写示范</b>。</p>
+  <div class="card">
+    <div class="dgrid">
+      <div>
+        <label>简历全文 <i>（贴文本 / 拖文件 / 粘贴截图）</i></label>
+        <textarea id="c_resume" style="min-height:220px" placeholder="贴入简历文本，或把 简历图片/Word/PDF 拖到这里…"></textarea>
+      </div>
+      <div>
+        <label>目标岗位 JD <i>（岗位职责 / 任职要求）</i></label>
+        <textarea id="c_jd" style="min-height:220px" placeholder="贴入岗位职责 / 任职要求…"></textarea>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--sub)">
+      <input type="file" id="resumeFile" accept=".txt,.md,.docx,.pdf,.doc,image/*" hidden>
+      <button class="btn ghost small" id="resumeFileBtn">📎 上传简历文件</button>
+      <span>图片 / Word / PDF / txt 均可 · 截图 Ctrl+V 直贴 · 老 .doc 先存为 .docx</span>
+    </div>
+    <div class="fileStat" id="fileStat" hidden></div>
+    <div style="margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <button class="btn" id="diagBtn">开始诊断</button>
+      <span class="stat" id="diagStat"></span>
+    </div>
+  </div>
+  <div class="card" id="diagResult" hidden>
+    <h3 style="margin-bottom:10px">诊断结果</h3>
+    <div class="result">
+      <div>
+        <svg id="radar" width="300" height="270" viewBox="0 0 300 270"></svg>
+      </div>
+      <div id="dimList"></div>
+    </div>
+    <div id="advice" style="margin-top:16px"></div>
+    <p class="dim-note">岗位匹配度 = JD 关键词覆盖率；诚信机器判不了，靠三问自查。</p>
+  </div>
+</section>
+
+<!-- ══════════ Tab 3 简历优化室 ══════════ -->
+<section id="tab-optimize" hidden>
+  <h2 class="page">简历优化室 · 把诊断出的问题逐条改掉</h2>
+  <p class="lede">诊断台告诉你<b>哪里弱</b>，这里管<b>怎么改</b>：贴入简历（可拖文件 / 粘贴截图），逐条挑出弱动词、缺数字、空套话，给改写方向。<b>只给方向不代写，数字必须真实</b>。</p>
+  <div class="card">
+    <label>简历全文 <i>（贴文本，或拖入/粘贴/上传 图片·Word·PDF 文件）</i></label>
+    <textarea id="o_resume" style="min-height:220px" placeholder="贴入要优化的简历；改完建议回「② 诊断台」复检…"></textarea>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;font-size:12.5px;color:var(--sub)">
+      <input type="file" id="o_file" accept=".txt,.md,.docx,.pdf,.doc,image/*" hidden>
+      <button class="btn ghost small" id="o_fileBtn">📎 上传简历文件</button>
+      <span>图片 / Word / PDF / txt 均可 · 截图 Ctrl+V 直贴 · 老 .doc 先存为 .docx</span>
+    </div>
+    <div class="fileStat" id="o_fileStat" hidden></div>
+    <div style="margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <button class="btn" id="o_btn">开始优化</button>
+      <span class="stat" id="o_stat"></span>
+    </div>
+  </div>
+  <div class="card" id="o_result" hidden></div>
+</section>
+
+<!-- ══════════ Tab 4 面试模拟间 ══════════ -->
+<section id="tab-interview" hidden>
+  <h2 class="page">面试模拟间 · 和虚拟面试官过一遍真实流程</h2>
+  <p class="lede">面试五步走：<b>自我介绍 → 经历深挖 → 能力/情景题 → 动机题 → 反问</b>。技术岗常加笔试。</p>
+  <div class="flow noprint" id="flowBar">
+    <span><b>①</b> 自我介绍</span><span><b>②</b> 经历深挖</span><span><b>③</b> 能力/情景题</span><span><b>④</b> 动机题</span><span><b>⑤</b> 反问环节</span><span>✚ 笔试/测评：技术岗常有，其他岗多为测评</span>
+  </div>
+
+  <div class="card noprint" id="setupCard">
+    <label>选择你的面试类型</label>
+    <select id="ivType">
+      <option value="general">通用校招面（快消/银行/国企/综合岗）</option>
+      <option value="tech">技术实习面（开发/前端/测试）</option>
+      <option value="ops">产品运营面（互联网产品/运营）</option>
+    </select>
+    <div class="tip"><b>怎么玩：</b>像真面试一样作答（每题 80–200 字）→ 每题收「复盘卡」→ 答完出总结。多带<b>项目名和数字</b>；中途可随时点「结束面试」收场出报告。</div>
+    <button class="btn" id="startIv" style="margin-top:14px">开始面试</button>
+  </div>
+
+  <div id="chatwrap">
+    <div class="ivstage noprint" id="ivStage" hidden>
+      <div class="ivface" id="ivFace"></div>
+      <div class="ivmeta">
+        <div class="nm2"><span id="ivName">面试官</span><span class="ivrole" id="ivRole">虚拟面试官</span></div>
+        <div class="st2"><span id="ivSt">等待开始</span><span class="ivwave" id="ivWave"><i></i><i></i><i></i><i></i></span></div>
+      </div>
+      <button class="ivend" id="ivEnd">结束面试</button>
+    </div>
+    <div class="chat" id="chat"></div>
+    <div id="ansbox" class="noprint" hidden>
+      <div style="flex:1;min-width:0">
+        <textarea id="ans" placeholder="像真面试一样作答（80–200 字，带事例）；Ctrl+Enter 或点「提交回答」"></textarea>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;flex:none">
+        <button class="btn" id="sendAns">提交回答</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card report noprint" id="reportCard" hidden></div>
+</section>
+
+</main>
+<footer class="noprint">求职急诊室 · 教练而非枪手，只改表达不改事实 · 本地处理不上传（OCR / 复杂 PDF 解析需联网） · 深度服务回对话说「帮我诊断简历」</footer>
+
+<script>
+/* ═══════════ 通用：Tab 切换 ═══════════ */
+var TABS=['resume','clinic','optimize','interview'];
+document.getElementById('tabs').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b)return;
+  TABS.forEach(function(t){
+    document.getElementById('tab-'+t).hidden=(t!==b.dataset.t);
+  });
+  [].forEach.call(this.querySelectorAll('button'),function(x){x.classList.toggle('on',x===b)});
+});
+
+/* ═══════════ Tab1 简历工坊（隐私模式：只在内存，退出自动存档） ═══════════ */
+var F=['f_name','f_age','f_phone','f_mail','f_politics','f_intent','f_city','f_worktype','f_avail','f_salary','f_school','f_major','f_eduTime','f_eduLevel','f_eduExtra','f_courses','f_skills','f_langs','f_awards','f_links','f_hobby','f_self'];
+var exps=[];var photoData=null;var everTouched=false;
+function freshStart(){
+  exps=[{}];photoData=null;everTouched=false;
+  try{['jobclinic-draft-v1','h0','h1','h2'].forEach(function(k){localStorage.removeItem(k)})}catch(e){}
+  renderExps();renderPaper();renderPhoto();
+  if(typeof syncJobPick==='function')syncJobPick();
+}
+function expRowHTML(i){
+  return '<div class="exp" data-i="'+i+'">'+
+   '<button class="del noprint" title="删除这段">×</button>'+
+   '<div class="row2">'+
+     '<select class="e-kind"><option value="">类型（选填）</option><option>项目</option><option>实习</option><option>工作</option><option>校园活动</option><option>竞赛</option><option>科研</option><option>志愿</option></select>'+
+     '<input type="text" class="e-time" placeholder="2025.03 – 2025.06">'+
+   '</div>'+
+   '<label style="margin-top:8px">名称</label><input type="text" class="e-name" placeholder="项目 / 单位名称：校园二手书交易平台、××公司、校学生会">'+
+   '<div style="margin-top:8px"><input type="text" class="e-role" placeholder="你的角色：后端开发 / 店员 / 组织者…"></div>'+
+   '<label style="margin-top:8px">做了什么 + 结果（每行一条）</label>'+
+    '<textarea class="e-desc" style="min-height:88px" placeholder="负责商品列表页与详情页开发&#10;按设计稿完成 3 个页面，获课程展示第 2 名"></textarea>'+
+   '</div>';
+}
+function renderExps(){
+  var box=document.getElementById('expList');
+  box.innerHTML=exps.map(function(e,i){return expRowHTML(i)}).join('');
+  [].forEach.call(box.querySelectorAll('.exp'),function(el){
+    var i=+el.dataset.i, d=exps[i]||{};
+    el.querySelector('.e-kind').value=d.kind||'';
+    el.querySelector('.e-name').value=d.name||'';
+    el.querySelector('.e-time').value=d.time||'';
+    el.querySelector('.e-role').value=d.role||'';
+    el.querySelector('.e-desc').value=d.desc||'';
+    var sync=function(){
+      exps[i]={kind:el.querySelector('.e-kind').value,name:el.querySelector('.e-name').value,time:el.querySelector('.e-time').value,
+        role:el.querySelector('.e-role').value,desc:el.querySelector('.e-desc').value};
+      renderPaper();
+    };
+    el.addEventListener('input',sync);
+    el.addEventListener('change',sync);
+    el.querySelector('.del').addEventListener('click',function(){
+      exps.splice(i,1); if(!exps.length)exps=[{}];
+      renderExps(); renderPaper();
+    });
+  });
+}
+document.getElementById('addExp').addEventListener('click',function(){
+  exps.push({}); renderExps(); renderPaper();
+});
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function renderPaper(){
+  var v={}; F.forEach(function(id){v[id]=document.getElementById(id).value.trim()});
+  var name=v.f_name||'你的姓名';
+  var skills=splitLines(v.f_skills||''),langs=splitLines(v.f_langs||''),awards=splitLines(v.f_awards||''),
+      links=splitLines(v.f_links||''),selfs=splitLines(v.f_self||'');
+  var html='';
+  if(photoData)html+='<img class="photo" src="'+photoData+'" alt="证件照">';
+  html+='<div'+(photoData?' style="padding-right:104px"':'')+'>'+
+   '<div class="nm">'+esc(name)+(v.f_age?' <span style="font-size:13px;font-weight:400;color:var(--sub)">'+esc(v.f_age)+'</span>':'')+'</div>'+
+   '<div class="jt">'+(v.f_intent?'期望职位：'+esc(v.f_intent):'求职意向待填')+'</div>'+
+   '<div class="cbox"><div class="ct">'+esc(v.f_phone||'电话')+' · '+esc(v.f_mail||'邮箱')+(v.f_politics?' · '+esc(v.f_politics):'')+'</div>'+
+   ((v.f_city||v.f_worktype||v.f_avail||v.f_salary)?('<div class="ct2">'+
+     [v.f_city?'期望城市：'+esc(v.f_city):'',v.f_worktype?esc(v.f_worktype):'',v.f_avail?esc(v.f_avail):'',v.f_salary?'期望薪资：'+esc(v.f_salary):''].filter(Boolean).join(' · ')+'</div>'):'')+
+   '</div></div>';
+  html+='<h3>教育背景</h3><ul><li>'+esc(v.f_school||'待填')+' · '+esc(v.f_major||'待填')+
+   (v.f_eduLevel?' · '+esc(v.f_eduLevel):'')+(v.f_eduTime?' · '+esc(v.f_eduTime):'')+(v.f_eduExtra?' · '+esc(v.f_eduExtra):'')+'</li>'+
+   (v.f_courses?'<li style="padding-left:22px">主修课程：'+esc(v.f_courses)+'</li>':'')+'</ul>';
+  html+='<h3>项目 / 实践经历</h3><ul>';
+  var any=false;
+  exps.forEach(function(e){
+    if(!e||(!e.name&&!e.desc))return; any=true;
+    html+='<li><b>'+esc(e.name||'待填')+'</b>'+(e.role?'（'+esc(e.role)+'）':'')+(e.kind?'<span class="kbadge">'+esc(e.kind)+'</span>':'')+(e.time?' · '+esc(e.time):'')+'</li>';
+    var ds=splitLines(e.desc||'');
+    ds.forEach(function(d){html+='<li style="padding-left:22px">'+esc(d)+'</li>'});
+  });
+  if(!any)html+='<li class="ph">还没有经历——去左栏添加，课程作业也算</li>';
+  html+='</ul>';
+  html+='<h3>技能</h3>';
+  html+=skills.length?'<div class="chips">'+skills.map(function(s){return '<span>'+esc(s)+'</span>'}).join('')+'</div>':'<div class="ph">待填：每行一条，别写"精通"</div>';
+  if(langs.length)html+='<h3>语言能力</h3><ul>'+langs.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ul>';
+  if(awards.length)html+='<h3>证书 / 奖项</h3><ul>'+awards.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ul>';
+  if(links.length)html+='<h3>作品 / 链接</h3><ul>'+links.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ul>';
+  if(v.f_hobby)html+='<h3>兴趣爱好</h3><ul><li>'+esc(v.f_hobby)+'</li></ul>';
+  if(selfs.length)html+='<h3>个人优势</h3><ul>'+selfs.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ul>';
+  document.getElementById('paper').innerHTML=html;
+}
+F.forEach(function(id){
+  document.getElementById(id).addEventListener('input',function(){renderPaper();if(id==='f_intent')syncJobPick()});
+  document.getElementById(id).addEventListener('change',function(){renderPaper();if(id==='f_intent')syncJobPick()});
+});
+/* —— 期望职位速选：分组胶囊收起，悬停/点开展开选职位（最多 3 个） —— */
+var JOBGROUPS=[
+ ['软件开发',['前端开发','后端开发','Java开发','Python开发','全栈开发','移动开发','游戏开发','嵌入式开发']],
+ ['IT/网络',['测试','运维','网络工程师','IT支持/网管','网络安全','数据库管理']],
+ ['数据/算法',['数据分析','大数据','算法工程师','人工智能','机器学习']],
+ ['产品/运营',['产品经理','运营专员','新媒体运营','电商运营','内容编辑','客服']],
+ ['市场/销售',['销售顾问','市场推广','银行柜员','保险代理']],
+ ['职能/文职',['行政文员','人事专员','财务会计','出纳','采购']],
+ ['教育培训',['中小学教师','计算机教师','助教','教培讲师','家教','幼儿保育']],
+ ['设计/传媒',['平面设计','UI设计','视频剪辑','文案策划','摄影','主播助理']],
+ ['服务业',['店员营业员','收银员','理货员','餐饮服务','门店店长','美容美发','理疗保健','家政保洁','保安','快递配送','司机']],
+ ['工程/制造',['普工技工','质检员','维修工','仓储管理','学徒工']]
+];
+function wishJobs(){
+  return document.getElementById('f_intent').value.split(/[\/／、,，]\s*/).map(function(s){return s.trim()}).filter(Boolean);
+}
+function syncJobPick(){
+  var cur=wishJobs();
+  [].forEach.call(document.querySelectorAll('#jobPick .qb'),function(b){b.classList.toggle('on',cur.indexOf(b.dataset.j)>-1)});
+  [].forEach.call(document.querySelectorAll('#jobPick .jg'),function(g,i){
+    var cnt=JOBGROUPS[i][1].filter(function(j){return cur.indexOf(j)>-1}).length;
+    var btn=g.querySelector('.jg-btn');
+    if(btn){btn.className='jg-btn'+(cnt?' has':'');btn.innerHTML=JOBGROUPS[i][0]+(cnt?' <b>·'+cnt+'</b>':'')+' ▾'}
+  });
+}
+function renderJobPick(){
+  document.getElementById('jobPick').innerHTML=JOBGROUPS.map(function(g){
+    return '<div class="jg"><button type="button" class="jg-btn">'+g[0]+' ▾</button>'+
+      '<div class="jg-pop">'+g[1].map(function(j){return '<button type="button" class="qb" data-j="'+j+'">'+j+'</button>'}).join('')+'</div></div>';
+  }).join('');
+  syncJobPick();
+}
+document.getElementById('jobPick').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b)return;
+  if((' '+(b.className||'')+' ').indexOf(' jg-btn ')>-1){ /* 手机：点开/收起分组 */
+    var g=b.parentNode, wasOpen=g.classList.contains('open');
+    [].forEach.call(document.querySelectorAll('#jobPick .jg'),function(x){x.classList.remove('open')});
+    if(!wasOpen)g.classList.add('open');
+    return;
+  }
+  var j=b.dataset.j; if(!j)return;
+  var cur=wishJobs(), at=cur.indexOf(j);
+  if(at>-1)cur.splice(at,1);
+  else{
+    if(cur.length>=3){alert('最多选 3 个期望职位：先点掉一个再选，或清空手填。');return}
+    cur.push(j);
+  }
+  document.getElementById('f_intent').value=cur.join(' / ');
+  everTouched=true;renderPaper();syncJobPick();
+});
+/* 点空白处收起分组 */
+document.addEventListener('click',function(e){
+  if(!(e.target&&e.target.closest&&e.target.closest('#jobPick'))){
+    [].forEach.call(document.querySelectorAll('#jobPick .jg'),function(x){x.classList.remove('open')});
+  }
+});
+renderJobPick();
+document.getElementById('printBtn').addEventListener('click',function(){window.print()});
+/* —— 导出 / 导入 / 安全退出（退出=自动存档+清空） —— */
+function collectData(){
+  var d={app:'job-clinic',v:2};
+  F.forEach(function(id){d[id]=document.getElementById(id).value});
+  d.exps=exps;d.photo=photoData;
+  d.c_resume=document.getElementById('c_resume').value;d.c_jd=document.getElementById('c_jd').value;
+  d.o_resume=document.getElementById('o_resume').value;
+  if(typeof hState!=='undefined')d.hState=hState;
+  return d;
+}
+function p2(n){return (n<10?'0':'')+n}
+function downloadDraft(tag){
+  var blob=new Blob([JSON.stringify(collectData())],{type:'application/json'});
+  var a=document.createElement('a'),ts=new Date();
+  a.href=URL.createObjectURL(blob);
+  a.download='求职急诊室草稿-'+ts.getFullYear()+p2(ts.getMonth()+1)+p2(ts.getDate())+'-'+p2(ts.getHours())+p2(ts.getMinutes())+(tag?'-'+tag:'')+'.json';
+  a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},2000);
+}
+function hasContent(){
+  if(photoData)return true;
+  for(var i=0;i<F.length;i++){if(document.getElementById(F[i]).value.trim())return true}
+  for(var j=0;j<exps.length;j++){var e=exps[j]||{};if(e.name||e.desc||e.role||e.time||e.kind)return true}
+  if(document.getElementById('c_resume').value.trim()||document.getElementById('c_jd').value.trim()||document.getElementById('o_resume').value.trim())return true;
+  return false;
+}
+document.getElementById('saveBtn').addEventListener('click',function(){
+  downloadDraft();everTouched=false;
+});
+document.getElementById('loadBtn').addEventListener('click',function(){document.getElementById('loadFile').click()});
+document.getElementById('loadFile').addEventListener('change',function(){
+  var f=this.files[0];this.value='';if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{
+      var d=JSON.parse(r.result);
+      if(!d||d.app!=='job-clinic'||!Array.isArray(d.exps))throw 0;
+      F.forEach(function(id){document.getElementById(id).value=d[id]||''});
+      exps=d.exps.length?d.exps:[{}];
+      document.getElementById('c_resume').value=d.c_resume||'';
+      document.getElementById('c_jd').value=d.c_jd||'';
+      document.getElementById('o_resume').value=d.o_resume||'';
+      if(d.hState)hState=d.hState;
+      photoData=(typeof d.photo==='string'&&d.photo.slice(0,10)==='data:image')?d.photo:null;
+      renderExps();renderPaper();renderPhoto();syncJobPick();
+      alert('草稿已导入 ✓');
+    }catch(e){alert('导入失败：这不是有效的「求职急诊室」草稿文件')}
+  };
+  r.readAsText(f,'utf-8');
+});
+document.getElementById('exitBtn').addEventListener('click',function(){
+  var had=hasContent();
+  if(had)downloadDraft('安全退出存档');
+  var msg=had
+    ?'草稿存档已开始下载（浏览器「下载」文件夹）。现在清空页面？清空后下一位看不到任何内容。'
+    :'当前没有填写任何内容，直接清空？';
+  if(!confirm(msg))return;
+  F.forEach(function(id){document.getElementById(id).value=''});
+  exps=[{}];photoData=null;
+  if(typeof hState!=='undefined')hState={};
+  document.getElementById('c_resume').value='';document.getElementById('c_jd').value='';
+  document.getElementById('o_resume').value='';
+  var fs=document.getElementById('fileStat');fs.innerHTML='';fs.hidden=true;
+  var ofs=document.getElementById('o_fileStat');ofs.innerHTML='';ofs.hidden=true;
+  document.getElementById('o_result').hidden=true;document.getElementById('o_result').innerHTML='';
+  document.getElementById('o_stat').textContent='';
+  document.getElementById('diagResult').hidden=true;
+  document.getElementById('diagStat').textContent='';
+  document.getElementById('ans').value='';
+  if(typeof iv!=='undefined'){iv.idx=0;iv.running=false;iv.answered=0;iv.selfChecks={};if(iv.timers){iv.timers.forEach(function(t){clearTimeout(t)});iv.timers=[]}}
+  document.getElementById('chat').innerHTML='';
+  document.getElementById('ivStage').hidden=true;
+  document.getElementById('setupCard').hidden=false;
+  document.getElementById('ansbox').hidden=true;
+  document.getElementById('reportCard').hidden=true;
+  document.getElementById('reportCard').innerHTML='';
+  try{['jobclinic-draft-v1','h0','h1','h2'].forEach(function(k){localStorage.removeItem(k)})}catch(e){}
+  renderExps();renderPaper();renderPhoto();
+  everTouched=false;
+  alert(had
+    ?'已清空 ✓ 存档在「下载」文件夹；想固定存桌面：浏览器下载位置改「桌面」。下次点「📥 导入草稿」可恢复。'
+    :'已清空 ✓ 可放心交给下一位使用。');
+});
+/* —— 证件照（仅内存） —— */
+function renderPhoto(){
+  var img=document.getElementById('photoThumb'),del=document.getElementById('photoDel');
+  if(photoData){img.src=photoData;img.hidden=false;del.hidden=false}
+  else{img.removeAttribute('src');img.hidden=true;del.hidden=true}
+}
+document.getElementById('photoBtn').addEventListener('click',function(){document.getElementById('photoFile').click()});
+document.getElementById('photoFile').addEventListener('change',function(){
+  var f=this.files[0];this.value='';if(!f)return;
+  if(!/^image\//.test(f.type)){alert('请选择图片文件');return}
+  if(f.size>8*1048576){alert('照片超过 8MB，请先压缩后重试');return}
+  var r=new FileReader();
+  r.onload=function(){photoData=r.result;renderPhoto();renderPaper()};
+  r.readAsDataURL(f);
+});
+document.getElementById('photoDel').addEventListener('click',function(){photoData=null;renderPhoto();renderPaper()});
+/* —— 离开提醒（未导出的内容会丢） —— */
+document.addEventListener('input',function(){everTouched=true});
+window.addEventListener('beforeunload',function(e){
+  if(everTouched){e.preventDefault();e.returnValue='本页不自动保存：未存档的内容会丢失（点「安全退出」可自动存档）。'}
+});
+freshStart();
+
+/* ═══════════ Tab2 诊断台 ═══════════ */
+var CLICHES=['性格开朗','吃苦耐劳','精通办公软件','office软件','热爱学习','沟通能力强','积极向上','责任心强','团结','抗压能力强','充满激情','思维活跃'];
+var STOP='的了吗呢和与及以及或者进行相关负责工作岗位要求优先具备良好熟练各种以下上述能够可以我们公司团队程度较强较强较强较强';
+function splitLines(t){return t.split(/\n+/).map(function(s){return s.trim()}).filter(Boolean)}
+function jdKeywords(jd){
+  var raw=jd.replace(/[，。；、,.;:：！!？（）()\[\]\/\s]+/g,' ').split(' ').filter(Boolean);
+  var seen={},out=[];
+  raw.forEach(function(w){
+    if(w.length<2||w.length>8)return;
+    if(STOP.indexOf(w)>-1)return;
+    if(/^[0-9]+$/.test(w))return;
+    if(!seen[w]){seen[w]=1;out.push(w)}
+  });
+  return out.slice(0,18);
+}
+var hState={};
+function diagnose(){
+  var rt=document.getElementById('c_resume').value, jt=document.getElementById('c_jd').value;
+  if(!rt.trim()){document.getElementById('diagStat').textContent='先贴简历再诊断';return}
+  var lines=splitLines(rt);
+  var hasJD=jt.trim().length>10;
+  var kw=hasJD?jdKeywords(jt):[];
+  var hit=0; kw.forEach(function(k){if(rt.indexOf(k)>-1)hit++});
+  var mScore=hasJD?(kw.length?Math.max(1,Math.round(hit/kw.length*5)):3):0;
+  var numLines=lines.filter(function(l){return /\d/.test(l)}).length;
+  var qScore=Math.max(1,Math.min(5,Math.round(numLines/Math.max(lines.length,1)*8)||1));
+  var cli=0; CLICHES.forEach(function(c){var m=rt.split(c).length-1;if(m>0)cli+=m});
+  var vague=lines.filter(function(l){return /^(参与|负责|协助|帮忙)/.test(l)&&(l.length<20)}).length;
+  var lScore=Math.max(1,5-Math.min(4,cli+vague));
+  var linkEvi=(/https?:\/\/|www\.|github|gitee|\.com/i.test(rt))?2:0;
+  var certEvi=(/证书|四级|六级|奖学金|获奖|竞赛|排名/i.test(rt))?2:0;
+  var eScore=Math.max(1,Math.min(5,1+linkEvi+certEvi));
+  var avgLen=lines.length?rt.replace(/\s/g,'').length/lines.length:0;
+  var sScore=Math.max(1,Math.min(5,Math.round((14-Math.min(12,Math.abs(avgLen-26)))/12*5)||3));
+  var checks=[].filter.call(document.querySelectorAll('.honesty'),function(c){return c.checked}).length;
+  var hScore=[1,2,4,5][checks]||1;
+  var DIMS=[['岗位匹配度',hasJD?mScore:null,kw],['经历结构化',sScore,null],['量化表达',qScore,null],['技能证据链',eScore,null],['语言精炼度',lScore,null],['诚信合规度',hScore,null]];
+  renderRadar(DIMS.map(function(d){return d[1]==null?3:d[1]}));
+  var html='';
+  var SYM={'岗位匹配度':hasJD?('JD 提取 '+kw.length+' 个关键词，简历命中 '+hit+' 个（覆盖率 '+Math.round(hit/Math.max(kw.length,1)*100)+'%）'):'未提供 JD，无法计算（按 3 分中性显示）',
+   '经历结构化':'平均每条 '+Math.round(avgLen)+' 字'+(vague?'，发现 '+vague+' 条“只说负责、没说做了什么”的短条目':'，粒度尚可'),
+   '量化表达':numLines+'/'+lines.length+' 条含数字（'+Math.round(numLines/Math.max(lines.length,1)*100)+'%）',
+   '技能证据链':(linkEvi?'发现链接类证据 ':'')+(certEvi?'发现证书/奖项类证据 ':'')+((linkEvi+certEvi)?'':'未发现技能证据（链接/证书/作品）'),
+   '语言精炼度':(cli?('命中 '+cli+' 处套话（如“'+(CLICHES.find(function(c){return rt.indexOf(c)>-1})||'性格开朗')+'…”）'):'未检出高频套话')+(vague?'、'+vague+' 条模糊短句':''),
+   '诚信合规度':'机器无法判断诚信——三问自查勾了 '+checks+'/3 项'};
+  DIMS.forEach(function(d){
+    var s=d[1]==null?3:d[1];
+    html+='<div class="scorebar"><span>'+d[0]+(d[1]==null?' <i style="color:#b9c3ca">（缺JD·中性）</i>':'')+'</span><b class="'+(s<=2?'low':'')+'">'+s+' / 5</b></div>'+
+      '<div class="dim-note" style="margin-bottom:8px">'+(SYM[d[0]]||'')+'</div>';
+  });
+  html+='<div style="margin-top:10px"><b style="font-size:13px">诚信三问（勾选后点重新诊断计入分数）：</b>'+
+   [['时间无重叠冲突，顺序真实'],['所有数字都能说出统计来源'],['没有夸大职务与虚构经历']].map(function(t,i){
+     return '<label class="checkbox"><input type="checkbox" class="honesty" '+(hState[i]?'checked':'')+'> '+t[0]+'</label>'
+   }).join('')+'</div>';
+  document.getElementById('dimList').innerHTML=html;
+  [].forEach.call(document.querySelectorAll('.honesty'),function(c,idx){c.addEventListener('change',function(){hState[idx]=c.checked;diagnose()})});
+  var weakest=DIMS.filter(function(d){return d[1]!=null}).sort(function(a,b){return a[1]-b[1]}).slice(0,2);
+  var ADV={'岗位匹配度':'把 JD 里的关键词直接用进简历（同一件事，换成岗位的叫法）。相关经历往前提。',
+   '经历结构化':'每条经历按「项目名（角色）+做了什么+结果」重写；「负责××工作」这类句子全部展开成具体动作。',
+   '量化表达':'给每条经历补 1 个真实数字（做了几个、多少人用、什么名次）。给不出就先留空去查记录，不编数。',
+   '技能证据链':'技能旁边放证据：作品链接、仓库地址、证书名。孤立技能要么补证据要么删掉。',
+   '语言精炼度':'删掉自我评价里的套话；「性格开朗吃苦耐劳」一句顶不上一个真实事例。',
+   '诚信合规度':'诚信是硬门槛：任何虚构在背调和面试追问中都会反噬，一处虚构全盘存疑。'};
+  var aHtml='<b>优先治这两个：</b><ul>'+weakest.map(function(d){return '<li style="margin:4px 0"><b>'+d[0]+'（'+d[1]+'分）：</b>'+ADV[d[0]]+'</li>'}).join('')+'</ul>'+
+    '<p class="dim-note" style="margin-top:6px">改写示范：去「③ 简历优化室」一键生成。</p>';
+  document.getElementById('advice').innerHTML=aHtml;
+  document.getElementById('diagResult').hidden=false;
+  document.getElementById('diagStat').textContent='已完成 · '+lines.length+' 条内容 · '+new Date().toLocaleTimeString();
+}
+document.getElementById('diagBtn').addEventListener('click',diagnose);
+function renderRadar(scores){
+  var DIMS=['岗位匹配','经历结构','量化表达','证据链','语言精炼','诚信合规'];
+  var cx=150,cy=135,R=95,N=6,svg=document.getElementById('radar');
+  var pt=function(i,r){var a=-Math.PI/2+i*2*Math.PI/N;return [cx+r*Math.cos(a),cy+r*Math.sin(a)]};
+  var s='';
+  for(var ring=1;ring<=5;ring++){
+    var p=[];for(var i=0;i<N;i++){var xy=pt(i,R*ring/5);p.push(xy[0].toFixed(1)+','+xy[1].toFixed(1))}
+    s+='<polygon points="'+p.join(' ')+'" fill="'+(ring===5?'#eef4f5':'none')+'" stroke="#d8dfe2"/>';
+  }
+  for(var i=0;i<N;i++){
+    var xy=pt(i,R);s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+xy[0].toFixed(1)+'" y2="'+xy[1].toFixed(1)+'" stroke="#d8dfe2"/>';
+    var l=pt(i,R+20);s+='<text x="'+l[0].toFixed(1)+'" y="'+l[1].toFixed(1)+'" font-size="10.5" text-anchor="middle" dominant-baseline="middle" fill="#5a6b78">'+DIMS[i]+'</text>';
+  }
+  var dp=scores.map(function(v,i){var xy=pt(i,R*v/5);return xy[0].toFixed(1)+','+xy[1].toFixed(1)});
+  s+='<polygon points="'+dp.join(' ')+'" fill="rgba(191,91,22,.25)" stroke="#bf5b16" stroke-width="2"/>';
+  scores.forEach(function(v,i){var xy=pt(i,R*v/5);s+='<circle cx="'+xy[0].toFixed(1)+'" cy="'+xy[1].toFixed(1)+'" r="3" fill="#bf5b16"/>'});
+  svg.innerHTML=s;
+}
+
+/* ═══════════ Tab2 扩展：文件喂料（图片/Word/PDF/txt，本机解析） ═══════════ */
+var lastImage=null;
+function abToStr(ab){return new TextDecoder('utf-8').decode(new Uint8Array(ab))}
+function readAsDataURL(f){return new Promise(function(ok,no){var r=new FileReader();r.onload=function(){ok(r.result)};r.onerror=function(){no('文件读取失败')};r.readAsDataURL(f)})}
+async function inflateU8(data,fmt){
+  var st=new Blob([data]).stream().pipeThrough(new DecompressionStream(fmt));
+  return new Uint8Array(await new Response(st).arrayBuffer());
+}
+function zipEntries(buf){
+  var u8=new Uint8Array(buf),dv=new DataView(buf);
+  var u32=function(o){return dv.getUint32(o,true)},u16=function(o){return dv.getUint16(o,true)};
+  var e=-1;
+  for(var i=u8.length-22;i>=Math.max(0,u8.length-22-65558);i--){if(u32(i)===0x06054b50){e=i;break}}
+  if(e<0)throw '不是有效的 .docx 文件（找不到 zip 结构）';
+  var ents={},p=u32(e+16),cnt=u16(e+10);
+  for(var c=0;c<cnt;c++){
+    if(u32(p)!==0x02014b50)break;
+    var nlen=u16(p+28),elen=u16(p+30),clen=u16(p+32);
+    ents[abToStr(u8.subarray(p+46,p+46+nlen))]={comp:u16(p+10),csize:u32(p+20),lho:u32(p+42)};
+    p+=46+nlen+elen+clen;
+  }
+  if(!ents['word/document.xml'])throw 'docx 里没找到正文（可能是纯图片文档）';
+  return {u8:u8,u32:u32,u16:u16,ents:ents};
+}
+async function parseDocx(buf){
+  if(typeof DecompressionStream==='undefined')throw '浏览器不支持本地解压 docx：请用 Chrome/Edge，或直接复制文字粘贴';
+  var z=zipEntries(buf),ent=z.ents['word/document.xml'],p=ent.lho;
+  if(z.u32(p)!==0x04034b50)throw 'docx 结构损坏';
+  var st=p+30+z.u16(p+26)+z.u16(p+28),data=z.u8.subarray(st,st+ent.csize),xml=null;
+  if(ent.comp===0)xml=abToStr(data);
+  else if(ent.comp===8)xml=abToStr(await inflateU8(data,'deflate-raw'));
+  else throw '未知的压缩方式，解析不了';
+  var text=xml.replace(/<w:tab[^>]*\/?>/g,'\t').replace(/<\/w:p>/g,'\n').replace(/<[^>]+>/g,'')
+    .replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'").replace(/&amp;/g,'&')
+    .replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim();
+  if(text.length<10)throw 'docx 里没有可读文本（可能是纯图片文档）';
+  return text;
+}
+function pdfStrChunk(s){
+  var out='',i=0;
+  while(i<s.length){
+    if(s.charAt(i)==='\\'){
+      var n=s.charAt(i+1);
+      if(n==='n'||n==='r'){out+='\n';i+=2}
+      else if(n==='t'){out+='\t';i+=2}
+      else if(n>='0'&&n<='7'){out+=String.fromCharCode(parseInt(s.substr(i+1,3),8)&255);i+=4}
+      else if(n===''){i+=2}
+      else{out+=n;i+=2}
+    }else{out+=s.charAt(i);i++}
+  }
+  return out;
+}
+function pdfTextFromStream(cand){
+  var s;try{s=abToStr(cand)}catch(e){return ''}
+  if(s.indexOf('Tj')<0&&s.indexOf('TJ')<0)return '';
+  var out=[],re=/\(((?:\\.|[^\\()])*)\)|<([0-9A-Fa-f\s]+)>/g,m;
+  var segs=s.split(/(?:Td|TD|T\*|ET)/);
+  for(var L=0;L<segs.length;L++){
+    var seg='';re.lastIndex=0;
+    while((m=re.exec(segs[L]))){
+      if(m[1]!=null)seg+=pdfStrChunk(m[1]);
+      else{var hx=m[2].replace(/\s+/g,'');for(var q=0;q+1<hx.length;q+=2)seg+=String.fromCharCode(parseInt(hx.substr(q,2),16))}
+    }
+    if(seg)out.push(seg);
+  }
+  return out.join('\n');
+}
+async function parsePdf(buf){
+  if(typeof DecompressionStream==='undefined')throw '浏览器不支持本地解析 PDF：请用 Chrome/Edge';
+  var u8=new Uint8Array(buf),texts=[],i=0;
+  while(i<u8.length-9){
+    if(u8[i]===115&&u8[i+1]===116&&u8[i+2]===114&&u8[i+3]===101&&u8[i+4]===97&&u8[i+5]===109){ // "stream"
+      var st=i+6;
+      if(u8[st]===13&&u8[st+1]===10)st+=2;else if(u8[st]===10||u8[st]===13)st+=1;
+      var en=-1;
+      for(var j=st;j<u8.length-9;j++){if(u8[j]===101&&u8[j+1]===110&&u8[j+2]===100&&u8[j+3]===115){en=j;break}} // "ends"
+      if(en<0)break;
+      var d=u8.subarray(st,en);
+      while(d.length&&(d[d.length-1]===10||d[d.length-1]===13))d=d.subarray(0,d.length-1);
+      var txt='';
+      try{txt=pdfTextFromStream(await inflateU8(d,'deflate'))}catch(e1){
+        try{txt=pdfTextFromStream(await inflateU8(d,'deflate-raw'))}catch(e2){
+          try{txt=pdfTextFromStream(d)}catch(e3){}
+        }
+      }
+      if(txt)texts.push(txt);
+      i=en+9;
+    }else i++;
+  }
+  var all=texts.join('\n').replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim();
+  if(!all)throw 'no-text';
+  return all;
+}
+async function parsePdfOnline(buf){
+  if(typeof pdfjsLib==='undefined')await loadScript('https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js');
+  if(typeof pdfjsLib==='undefined')throw 'PDF 在线解析组件加载失败（网络问题？）';
+  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+  var doc=await pdfjsLib.getDocument({data:buf}).promise;
+  var out=[];
+  for(var pg=1;pg<=doc.numPages;pg++){
+    var tc=await (await doc.getPage(pg)).getTextContent();
+    var lastY=null,line='';
+    tc.items.forEach(function(it){
+      var y=it.transform[5];
+      if(lastY!==null&&Math.abs(y-lastY)>=3){out.push(line);line=''}
+      line+=it.str;lastY=y;
+    });
+    if(line)out.push(line);
+    out.push('');
+  }
+  try{doc.destroy()}catch(e){}
+  return out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+}
+async function extractPdfBest(file){
+  var t1=null;
+  try{t1=await parsePdf(await file.arrayBuffer())}catch(e1){}
+  if(t1&&textQuality(t1)>=0.6)return {kind:'text',label:'PDF',text:t1};
+  if(navigator.onLine){
+    var t2=null;
+    try{t2=await parsePdfOnline((await file.arrayBuffer()).slice(0))}catch(e2){}
+    if(t2&&textQuality(t2)>=0.4)return {kind:'text',label:'PDF（联网精读）',text:t2};
+  }
+  throw '本机解析不了这个 PDF：可能是扫描件或特殊字体。替代方案：① 复制文字直接粘贴 ② 截图后走「图片+OCR」'+(navigator.onLine?'':'（当前离线，联网后可自动用在线解析重试）');
+}
+function textQuality(t){
+  if(!t)return 0;var good=0,total=0;
+  for(var i=0;i<t.length;i++){var c=t.charAt(i);
+    if(c==='\n'||c==='\t'||c===' ')continue;
+    total++;
+    if(/[\u4e00-\u9fff\u3000-\u303f\uff00-\uffef]|[A-Za-z0-9 .,;:!?'"()\-+*/=%&$#@]/.test(c))good++;
+  }
+  return total?good/total:0;
+}
+function loadScript(src){return new Promise(function(ok,no){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=function(){no('识别组件脚本加载失败（网络问题？）')};document.head.appendChild(s)})}
+async function ocrImage(dataUrl,onP){
+  if(!navigator.onLine)throw '当前处于离线状态：图片转文字需要联网下载识别模型';
+  if(typeof Tesseract==='undefined')await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
+  if(typeof Tesseract==='undefined')throw '识别组件加载失败，请检查网络后重试';
+  onP(0.02);
+  var rec=await Tesseract.createWorker('chi_sim+eng',1,{logger:function(m){if(m.status==='recognizing text'&&onP)onP(m.progress)}});
+  var r;
+  try{r=await rec.recognize(dataUrl)}finally{try{await rec.terminate()}catch(e){}}
+  return (r&&r.data&&r.data.text)||'';
+}
+async function extractFile(file){
+  var nm=(file.name||'').toLowerCase();
+  if(file.size>30*1048576)throw '文件超过 30MB，请压缩或截图后再试';
+  if(/^image\//.test(file.type)||/\.(png|jpe?g|webp|bmp|gif)$/.test(nm))
+    return {kind:'image',dataUrl:await readAsDataURL(file),name:file.name||'图片'};
+  if(/\.docx$/.test(nm))return {kind:'text',label:'Word',text:await parseDocx(await file.arrayBuffer())};
+  if(/\.pdf$/.test(nm))return await extractPdfBest(file);
+  if(/\.doc$/.test(nm))throw '老版 .doc 暂不支持：请在 Word/WPS 里「另存为 .docx」再上传，或直接复制文字粘贴';
+  return {kind:'text',label:'文本',text:await file.text()};
+}
+function statMsg(html,el){
+  var s=el||document.getElementById('fileStat');
+  s.hidden=false;s.innerHTML=html;
+}
+async function handleExtract(file,boxId,statEl){
+  var boxName=({c_resume:'简历全文',c_jd:'岗位 JD',o_resume:'简历全文（优化室）'})[boxId]||'文本框';
+  statMsg('<span>⏳ 正在解析 '+esc(file.name||'剪贴板内容')+'…</span>',statEl);
+  try{
+    var r=await extractFile(file);
+    if(r.kind==='image'){
+      lastImage={dataUrl:r.dataUrl,target:boxId};
+      statMsg('<img src="'+r.dataUrl+'">'+
+        '<div style="flex:1;min-width:200px"><b>图片已载入</b> · 点右侧按钮把图里的字识别成文本，填入「'+boxName+'」<div class="drop-hint">图片不离开本机；OCR 需联网（首次下载约 15–20MB 模型）</div></div>'+
+       '<div><button class="btn small" id="ocrBtn">🔍 识别图中文字</button><div id="ocrStat" class="drop-hint"></div></div>',statEl);
+      document.getElementById('ocrBtn').addEventListener('click',async function(){
+        var b=this,st=document.getElementById('ocrStat');
+        b.disabled=true;st.textContent='准备识别组件…';
+        try{
+          var txt=await ocrImage(lastImage.dataUrl,function(p){st.textContent='识别中 '+Math.round(p*100)+'%'});
+          if(!txt||!txt.replace(/\s/g,''))throw '没识别出文字：图片可能太模糊，或本身没有文字';
+          document.getElementById(lastImage.target).value=txt;
+          everTouched=true;
+          statMsg('<span>✅ OCR 完成，已填入「'+boxName+'」（共 '+txt.length+' 字）。OCR 偶有错字，请扫一眼再诊断。</span>',statEl);
+        }catch(e){
+          b.disabled=false;st.textContent='';
+          alert('OCR 失败：'+(typeof e==='string'?e:((e&&e.message)||'未知原因'))+'\n\n替代方案：把图片里的关键内容手动敲进文本框。');
+        }
+      });
+    }else{
+      if(textQuality(r.text)<0.6)throw '解析结果大多是乱码：该文件可能内嵌特殊字体或是扫描件。替代方案：① 复制文字直接粘贴 ② 截图后走「图片+OCR」';
+      document.getElementById(boxId).value=r.text;
+      everTouched=true;
+      statMsg('<span>✅ 已从 '+r.label+' 提取 '+r.text.length+' 字填入「'+boxName+'」（原内容被覆盖）。检查一眼再诊断。</span>',statEl);
+    }
+  }catch(e){
+    statMsg('<span>⚠️ '+(typeof e==='string'?e:((e&&e.message)||'解析失败'))+'</span>',statEl);
+  }
+}
+document.getElementById('resumeFileBtn').addEventListener('click',function(){document.getElementById('resumeFile').click()});
+document.getElementById('resumeFile').addEventListener('change',function(){
+  var f=this.files[0];this.value='';if(f)handleExtract(f,'c_resume');
+});
+document.getElementById('o_fileBtn').addEventListener('click',function(){document.getElementById('o_file').click()});
+document.getElementById('o_file').addEventListener('change',function(){
+  var f=this.files[0];this.value='';if(f)handleExtract(f,'o_resume',document.getElementById('o_fileStat'));
+});
+['c_resume','c_jd','o_resume'].forEach(function(id){
+  var el=document.getElementById(id);
+  var statEl=id==='o_resume'?document.getElementById('o_fileStat'):null;
+  el.addEventListener('dragover',function(e){e.preventDefault();el.classList.add('dragover')});
+  el.addEventListener('dragleave',function(){el.classList.remove('dragover')});
+  el.addEventListener('drop',function(e){
+    e.preventDefault();el.classList.remove('dragover');
+    var f=e.dataTransfer.files&&e.dataTransfer.files[0];
+    if(f)handleExtract(f,id,statEl);
+  });
+  el.addEventListener('paste',function(e){
+    var fs=e.clipboardData&&e.clipboardData.files;
+    if(fs&&fs.length){e.preventDefault();handleExtract(fs[0],id,statEl)}
+  });
+});
+
+/* ═══════════ Tab3 简历优化室（教练式改写示范：只改表达，不编事实） ═══════════ */
+var O_WEAK=/^(参加|参与|协助|帮助|帮忙|配合|支持)[了]?/;
+var O_RESP=/^负责.{0,22}(工作|事务|日常|管理|维护|运营)$/;
+var O_POST=/^担任.{1,16}(部长|社长|会长|组长|干事|班长|委员|队长|负责人|主席)/;
+var O_OVER=/精通|非常熟练|十分熟练|高度熟练|深度掌握|熟练掌握/;
+var optData=[];
+function oSkip(l){ /* 联系方式、小标题、技能列表等不做“缺数字”检查 */
+  var s=l.replace(/\s/g,'');
+  return s.length<8||/@|邮箱|电话|手机/.test(l)||/^http/i.test(l)||(s.length<24&&/[、,，]/.test(l));
+}
+function analyzeLine(l){
+  var plain=l.replace(/\s/g,''),iss=[];
+  var w=O_WEAK.exec(plain);
+  if(w)iss.push({t:'弱动词',d:'「'+w[0]+'」换成你动手做的<b>具体动作</b>（开发 / 策划 / 撰写 / 组织 / 设计 / 搭建 / 统计…）——直接写你做了什么'});
+  else if(O_RESP.test(plain))iss.push({t:'只挂职责',d:'「负责××工作」只有职责没有动作：展开成「做了什么 + 做成了什么结果」'});
+  else if(O_POST.test(plain))iss.push({t:'只有职务',d:'职务本身不证明能力——补一句任职期间<b>做成的最具体的一件事</b>，最好带数字'});
+  var cli=CLICHES.filter(function(c){return plain.indexOf(c)>-1});
+  if(cli.length)iss.push({t:'空套话',d:'删掉「'+cli[0]+'」这类自我评价，换成一句事实（做了什么事 → 什么结果）。形容词不加分，事实才加分'});
+  var over=O_OVER.test(plain);
+  if(over)iss.push({t:'过度声明',d:'「精通 / 非常熟练」→「熟悉，做过<b>【项目名】</b>」：给得出证据再写高——面试官一定追问「精通到什么程度」'});
+  var meN=(plain.match(/我/g)||[]).length,teamN=(plain.match(/我们|团队|大家|一起/g)||[]).length;
+  if(teamN>0&&meN<2)iss.push({t:'团队模糊',d:'写清<b>你</b>负责的模块边界：「我负责__，其他人负责__」——面试官只想听你的部分'});
+  var hasNum=/\d/.test(plain)||/(两|三|四|五|六|七|八|九|十|百|千)[个次人名页周月年天件%]|第[一二三四五六七八九十]/.test(plain);
+  if(!oSkip(l)&&!cli.length&&!over&&!hasNum&&!/大学|学院|专业|GPA|教育背景|主修课程|求职意向|期望|到岗|薪资|政治|团员|党员|群众|兴趣爱好|普通话|求职状态|工作性质/.test(plain))
+    iss.push({t:'缺数字',d:'补 1 个<b>真实</b>数字：做了几个 / 服务多少人 / 第几名 / 耗时几周。查记录去——查不到就删这条或改写事实，别编'});
+  if(plain.length>55)iss.push({t:'句子过长',d:'拆成两条：一条写动作，一条写结果。HR 每屏只扫 20 秒，长句会被直接跳过'});
+  return iss;
+}
+function markLine(l,words){
+  var seen=[];
+  words.filter(Boolean).sort(function(a,b){return b.length-a.length}).forEach(function(w){
+    if(seen.some(function(x){return x.indexOf(w)>-1}))return;seen.push(w)
+  });
+  var s=esc(l);
+  seen.forEach(function(w){
+    s=s.split(esc(w)).join('<span class="hl">'+esc(w)+'</span>');
+  });
+  return s;
+}
+function optimizeRun(){
+  var t=document.getElementById('o_resume').value;
+  if(!t.trim()){document.getElementById('o_stat').textContent='先贴简历再优化';return}
+  var lines=splitLines(t);optData=[];var cat={},tot=0,ok=0,cards='';
+  lines.forEach(function(l){
+    var iss=analyzeLine(l);
+    if(!iss.length)return;
+    ok++;tot+=iss.length;
+    iss.forEach(function(x){cat[x.t]=(cat[x.t]||0)+1});
+    var words=[],w=O_WEAK.exec(l);
+    if(w)words.push(w[0]);
+    else if(O_RESP.test(l))words.push('负责');
+    else if(O_POST.test(l))words.push('担任');
+    CLICHES.forEach(function(c){if(l.indexOf(c)>-1)words.push(c)});
+    var ov=O_OVER.exec(l);if(ov)words.push(ov[0]);
+    cards+='<div class="opt-card">'+
+     '<div class="opt-orig"><b>原句 · </b>'+markLine(l,words)+'</div>'+
+     '<div>'+iss.map(function(x){return '<span class="opt-tag">'+x.t+'</span>'}).join('')+
+     '<button class="btn ghost small optcopy" data-i="'+optData.length+'" style="margin-left:6px">复制这条</button></div>'+
+     iss.map(function(x){return '<div class="opt-fix"><b>✍ '+x.t+'</b> · '+x.d+'</div>'}).join('')+
+     '</div>';
+    optData.push({line:l,iss:iss});
+  });
+  var res=document.getElementById('o_result');
+  if(!optData.length){
+    res.innerHTML='<h3 style="margin-bottom:8px">优化结果</h3><div class="tip">扫了 '+lines.length+' 条，未发现典型问题。规则是粗查——深度打磨回对话找 AI。</div>';
+  }else{
+    res.innerHTML='<h3 style="margin-bottom:8px">优化结果 · '+ok+'/'+lines.length+' 条建议修改</h3>'+
+     '<div class="opt-sum">'+Object.keys(cat).map(function(k){return '<b>'+k+' ×'+cat[k]+'</b>'}).join('')+
+     '<button class="btn ghost small" id="o_export" style="margin-left:auto">📋 导出优化清单</button></div>'+
+      '<div class="tip"><b>改法优先级：</b>先<b>补数字</b>→ 再<b>换动作词</b>→ 最后<b>删套话</b>；改完回「② 诊断台」复检。</div>'+
+     '<div class="tip" style="background:#fdf6ee;border-color:#eadfc0"><b>合规护栏：</b>只给方向不代写，<b>不编数字、不造经历</b>。</div>'+
+     cards;
+    document.getElementById('o_export').addEventListener('click',function(){
+      var out=['求职急诊室 · 简历优化清单','生成：'+new Date().toLocaleString(),'','【】内是方向提示，必须替换成真实信息，不编造。',''];
+      optData.forEach(function(o,i){
+        out.push((i+1)+'. 原句：'+o.line);
+        o.iss.forEach(function(x){out.push('    ['+x.t+'] '+x.d.replace(/<[^>]+>/g,''))});
+        out.push('');
+      });
+      var blob=new Blob([out.join('\r\n')],{type:'text/plain;charset=utf-8'});
+      var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+      a.download='简历优化清单.txt';a.click();
+      setTimeout(function(){URL.revokeObjectURL(a.href)},2000);
+    });
+  }
+  res.hidden=false;
+  document.getElementById('o_stat').textContent='已扫描 '+lines.length+' 条 · 命中 '+ok+' 条 · 共 '+tot+' 处建议 · '+new Date().toLocaleTimeString();
+  [].forEach.call(res.querySelectorAll('.optcopy'),function(b){
+    b.addEventListener('click',function(){
+      var o=optData[+b.dataset.i];
+      oCopy('[原句] '+o.line+'\n[改法]\n'+o.iss.map(function(x){return '· '+x.t+'：'+x.d.replace(/<[^>]+>/g,'')}).join('\n'),b);
+    });
+  });
+}
+function oCopy(s,btn){
+  var done=function(){var t0=btn.textContent;btn.textContent='已复制 ✓';setTimeout(function(){btn.textContent=t0},1500)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(s).then(done,function(){oCopyFB(s,done)})}
+  else oCopyFB(s,done);
+}
+function oCopyFB(s,done){
+  var ta=document.createElement('textarea');ta.value=s;ta.style.cssText='position:fixed;opacity:0';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');done()}catch(e){alert('复制失败：请手动选中文字复制')}
+  document.body.removeChild(ta);
+}
+document.getElementById('o_btn').addEventListener('click',optimizeRun);
+
+/* ═══════════ Tab4 面试模拟间 ═══════════ */
+var BANKS={
+ general:[
+  {tag:'① 自我介绍',q:'你好，先请你做个 1 分钟左右的自我介绍吧。',probe:'表达逻辑 + 你认为什么最值得介绍。HR 在这里形成对你的第一印象。',skl:'骨架：基本信息（10秒）→ 最相关的一段经历（30秒，说事例不说形容词）→ 为什么匹配这个岗位（15秒）。结尾留钩子，让面试官想追问哪段经历。',pit:'坑：背简历原文；“我叫×××，性格开朗……”开场全是形容词。'},
+  {tag:'② 经历深挖',q:'讲一个你最有成就感的项目或活动经历。',probe:'STAR 结构 + 细节真实度。面试官会不断追问，编的经历在这里必露馅。',skl:'情境（一句）→ 任务（一句）→ 行动（重点，你具体做了什么）→ 结果（数字）。行动部分占 60%。',pit:'坑：全说“我们”，面试官想听“你”做了什么。'},
+  {tag:'② 经历深挖',q:'这段经历里你遇到的最大困难是什么，怎么解决的？',probe:'解决问题的方式 + 抗压表现。',skl:'真实困难 + 你的具体步骤 + 结果 + 学到什么。困难别选太假的（“时间不够用”）。',pit:'坑：说“没遇到什么困难”。'},
+  {tag:'③ 能力/情景题',q:'说说你的优点和缺点各一个。',probe:'自我认知是否诚实、成熟。',skl:'优点：一个词 + 一个真实事例佐证。缺点：真实但非致命 + 你正在怎么改（要有改的动作）。',pit:'坑：“我缺点是太追求完美”——面试官听过一万遍，且等于没答。'},
+  {tag:'③ 能力/情景题',q:'如果团队里有人总不干活，拖累了进度，你会怎么办？',probe:'协作方式、沟通分寸。',skl:'先私下沟通了解原因 → 明确分工和时间点 → 必要时上报。体现“先沟通、有步骤、不越级不逃避”。',pit:'坑：两个极端——“直接告诉老师”（越级告状）和“我自己全干了”（老好人）。'},
+  {tag:'④ 动机题',q:'为什么投我们公司、这个岗位？',probe:'是否真的了解岗位与公司（还是海投）。',skl:'提前查公司主营业务和这个岗位日常做什么 → 把你的某段经历/能力对上去 → “所以我想来”。',pit:'坑：“贵公司平台大、发展好”——万能但无效，等于没答。'},
+  {tag:'④ 动机题',q:'你未来 3–5 年的职业规划是什么？',probe:'稳定性 + 目标感。',skl:'不需要多宏大：1–2 年扎实掌握岗位核心技能 → 3–5 年能独立负责一个模块/方向。规划要和这个岗位能对上。',pit:'坑：“先干着看，走一步算一步”。'},
+  {tag:'压力题',q:'你的经历和我们岗位的相关性好像不太大，你怎么看？',probe:'临场心态 + 能否自洽表达。',skl:'承认相关性不是最高 → 拆出可迁移能力（学习速度、执行、某项具体技能）→ 给证据。不卑不亢。',pit:'坑：当场慌了或者过度道歉；也不要硬刚“我觉得很相关”。'},
+  {tag:'⑤ 反问环节',q:'我的问题差不多了，你有什么想问我的吗？',probe:'你对岗位的真实兴趣 + 思考深度。',skl:'准备 2–3 个真问题：如「这个岗位入职后前三个月主要做什么」「团队现在最需要新人补上的是哪块」。',pit:'坑：“没有要问的了”+直接问薪资加班（薪资该问，但通常放HR面/offer阶段）。'},
+  {tag:'收尾',q:'最后，你还有什么想补充的吗？',probe:'补位机会。',skl:'一句话收束：“今天没来得及讲的是××，如果有兴趣我可以展开”，自然不拖沓。',pit:'坑：说“没有了”——放弃最后一次展示机会。'}
+ ],
+ tech:[
+  {tag:'① 自我介绍',q:'你好，先简单自我介绍一下，重点说说和技术相关的部分。',probe:'技术经历的真实厚度，1 分钟能听出来。',skl:'学校专业（5秒）→ 最硬的一个项目（做了什么模块、用了什么技术、结果如何）→ 在学什么、为什么投这个岗。',pit:'坑：花 40 秒讲社团和兴趣爱好，技术一句带过。'},
+  {tag:'② 项目深挖',q:'详细讲讲你简历上这个项目：你具体写的哪部分，遇到最难的技术点是什么？',probe:'代码是不是你写的——追问细节防“挂名”。',skl:'说清模块边界（我写了哪几个文件/页面）→ 一个具体技术难点（如布局错位、接口联调、状态管理）→ 怎么定位怎么解决。',pit:'坑：只说“我们实现了××功能”，一问实现细节就卡壳。'},
+  {tag:'② 项目深挖',q:'你们的 Git 协作流程是怎样的？遇到过冲突怎么处理？',probe:'真实协作经验。',skl:'分支策略（谁开分支、怎么合）→ 冲突时先沟通再取舍 → 提交记录的意义（“我的提交都在”）。',pit:'坑：说“都在一个群文件里传”，说明完全没接触协作。'},
+  {tag:'③ 能力题',q:'JD 里要求的 ×× 技术，你掌握到什么程度？',probe:'诚实度 + 自学能力。',skl:'真实水平如实说（“课程里用过，做过××，没深入过××”）→ 补一句学习路径（“最近正在看××文档/做××小项目”）。',pit:'坑：简历写了“精通”，被追问后当场塌房——写“熟悉/了解”更安全。'},
+  {tag:'③ 能力题',q:'你平时怎么学一门新技术？举个例子。',probe:'学习方法论。',skl:'最近真实学过的一个（什么 → 官方文档/教程 → 做了个什么小东西 → 踩了什么坑）→ 说明你能自学着上岗。',pit:'坑：“看视频跟着敲”——要落到“做出来了什么”。'},
+  {tag:'压力题',q:'课程项目和真实工作差距挺大的，你怎么补？',probe:'对工程的真实认知 + 态度。',skl:'承认差距（代码规范、协作、真实数据规模）→ 已经在做的准备（读源码、规范提交记录）→ 实习正是来补这个的。',pit:'坑：“我觉得没什么差距”。'},
+  {tag:'④ 动机题',q:'为什么走技术方向？又为什么选我们公司？',probe:'稳定动机（技术离职率敏感）。',skl:'一个真实起点事例（第一次做出东西跑起来的成就感）→ 公司技术栈/业务与你的匹配点。',pit:'坑：“程序员工资高”——哪怕是真的，也别当唯一理由。'},
+  {tag:'④ 动机题',q:'实习期一周能来几天？能保证多长？',probe:'到岗可行性（实习最常挂的环节）。',skl:'如实说课表和能到岗的时间。有约束就给方案（“周二四全天+周末可远程”）。',pit:'坑：先答应“都行”，开学后做不到，信誉直接归零。'},
+  {tag:'笔试科普',q:'提醒：技术岗面试前后常有笔试/机试——算法题或现场 debug。怎么准备？',probe:'信息题，不是考你。',skl:'提前刷基础题（数组/字符串/哈希类）→ 现场先写思路再写代码 → 写完主动跑测试用例。',pit:'坑：一点没练就上，机试环境不熟悉（无法自动补全）。'},
+  {tag:'⑤ 反问环节',q:'你有什么想问我的？技术侧的好问题。',probe:'技术兴趣真实度。',skl:'推荐：「新人进来一般先接手哪类模块」「团队代码 review 是怎么做的」——这类问题自带“我懂协作”信号。',pit:'坑：“要用什么框架我回去学”——可以问，但别显得全靠入职再学。'}
+ ],
+ ops:[
+  {tag:'① 自我介绍',q:'你好，先请自我介绍一下，顺带说说你为什么想做产品/运营。',probe:'表达感染力（运营岗把表达本身当基本功）。',skl:'基本信息 → 一个能体现你用户感/执行力的经历 → 与岗位的连接点。语气自然，别背稿。',pit:'坑：全程念简历，没有一点自己的话。'},
+  {tag:'② 产品题',q:'你用过我们的产品吗？挑一个你常用的功能，说说它哪里好、哪里可以改进。',probe:'岗位基本功：用户视角 + 具体建议（这是运营产品岗的必考题）。',skl:'真用过的功能 → 好在哪（具体到交互）→ 一个改进点（为什么、改完预期解决什么）→ 别颠覆式重设计。',pit:'坑：没提前用过产品/只会夸“挺好的”。'},
+  {tag:'③ 数据题',q:'说一个你用数据做判断的经历。',probe:'数据敏感度（运营的核心日常）。',skl:'背景 → 看了什么数据 → 发现了什么 → 做了什么 → 结果变化。哪怕小（“群消息打开率低，改了发送时间后提升”）。',pit:'坑：全程形容词，一个数字没有。'},
+  {tag:'③ 情景题',q:'让你在校园里策划一场拉新活动，你会怎么做？',probe:'完整做事的框架感。',skl:'目标（拉多少新）→ 渠道（在哪触达）→ 钩子（凭什么来）→ 执行分工 → 预算 → 复盘指标。有框架比有创意重要。',pit:'坑：上来只描述活动多热闹，没有目标和衡量。'},
+  {tag:'④ 动机题',q:'运营前期很多琐碎重复的执行工作，你能接受吗？',probe:'预期管理（离职重灾区）。',skl:'如实接受 + 说明你从琐碎里学到什么的态度（“执行里藏着真实用户反馈”）+ 你想长期往哪个方向发展。',pit:'坑：“我想做的是策略，不是打杂”。'},
+  {tag:'压力题',q:'你这段经历数据结果并不好，为什么还写上简历？',probe:'归因方式是否成熟。',skl:'承认结果 → 归因（外因+自己的失误都讲）→ 复盘结论和下次会怎么做。诚实+有反思比漂亮数字加分。',pit:'坑：全推给“队友不给力/时间不够”。'},
+  {tag:'④ 动机题',q:'为什么选运营/产品而不是你本专业方向？',probe:'动机自洽。',skl:'一个真实的触发点事例 → 你为转方向已做的动作（自学/实践）→ 长期打算。',pit:'坑：“专业不好找工作所以来做运营”。'},
+  {tag:'⑤ 反问环节',q:'你有什么想问我的？',probe:'岗位理解深度。',skl:'好问题：「新人入职前三个月的核心指标是什么」「团队目前最缺人补的一环是什么」。',pit:'坑：只问“加班多吗”。'}
+ ]
+};
+/* —— 虚拟面试官形象（纯本地 SVG 绘制，无照片不上传） —— */
+var IV_FACE='<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'+
+ '<rect x="43" y="56" width="14" height="22" rx="7" fill="#eab98f"/>'+
+ '<path d="M12 100c3-17 17-25 38-25s35 7 38 25z" fill="#33689e"/>'+
+ '<path d="M50 92 38 76h24z" fill="#fff"/>'+
+ '<path d="M46 80h8l-4 5z" fill="#28527b"/>'+
+ '<path d="M50 85l-5 4 5 13 5-13z" fill="#28527b"/>'+
+ '<ellipse cx="50" cy="46" rx="23" ry="26" fill="#f4cba6"/>'+
+ '<circle cx="27.5" cy="50" r="4" fill="#f4cba6"/>'+
+ '<circle cx="72.5" cy="50" r="4" fill="#f4cba6"/>'+
+ '<path d="M28 40Q28 20 50 20t22 20q-7-10-22-10t-22 10z" fill="#2f3d4a"/>'+
+ '<path d="M34 42q5-3 10-1M56 41q5-2 10 1" fill="none" stroke="#2f3d4a" stroke-width="2" stroke-linecap="round"/>'+
+ '<circle cx="40" cy="50" r="7.5" fill="none" stroke="#33475c" stroke-width="2.2"/>'+
+ '<circle cx="60" cy="50" r="7.5" fill="none" stroke="#33475c" stroke-width="2.2"/>'+
+ '<path d="M47.5 50h5M32.5 47l-4-2M67.5 47l4-2" fill="none" stroke="#33475c" stroke-width="2.2" stroke-linecap="round"/>'+
+ '<g class="ivblink"><ellipse cx="40" cy="50" rx="3" ry="3.8" fill="#25313d"/><ellipse cx="60" cy="50" rx="3" ry="3.8" fill="#25313d"/></g>'+
+ '<path d="M50 52q2 6-1 9" fill="none" stroke="#d9a377" stroke-width="2" stroke-linecap="round"/>'+
+ '<path d="M42 64q8 5 16 0" fill="none" stroke="#b56552" stroke-width="2.4" stroke-linecap="round"/>'+
+ '</svg>';
+var IV_HOST={general:['周经理','人力资源 · HR 面'],tech:['陈工','技术团队 · 技术面'],ops:['杨老师','产品运营团队 · 业务面']};
+var iv={bank:[],idx:0,answered:0,selfChecks:{},running:false,timers:[]};
+document.getElementById('ivFace').innerHTML=IV_FACE;
+function ivTimer(fn,ms){var t=setTimeout(fn,ms);iv.timers.push(t);return t}
+function setIvSt(txt,speaking){
+  var s=document.getElementById('ivSt');if(s)s.textContent=txt;
+  var w=document.getElementById('ivWave');if(w)w.classList.toggle('on',!!speaking);
+}
+function bubble(role,html,delay){
+  var chat=document.getElementById('chat');
+  var div=document.createElement('div');
+  div.className='msg '+(role==='me'?'me':'iv');
+  div.innerHTML='<div class="ava">'+(role==='me'?'你':IV_FACE)+'</div><div class="body">'+html+'</div>';
+  if(role!=='me'&&delay){
+    var t=document.createElement('div');t.className='msg iv';t.id='typing';
+    t.innerHTML='<div class="ava">'+IV_FACE+'</div><div class="body typing"><span></span><span></span><span></span></div>';
+    chat.appendChild(t);chat.scrollTop=chat.scrollHeight;
+    ivTimer(function(){t.remove();chat.appendChild(div);chat.scrollTop=chat.scrollHeight},delay);
+  }else{chat.appendChild(div);chat.scrollTop=chat.scrollHeight}
+}
+function startIv(){
+  var type=document.getElementById('ivType').value,host=IV_HOST[type]||IV_HOST.general;
+  iv.bank=BANKS[type];
+  iv.idx=0;iv.answered=0;iv.running=true;iv.selfChecks={};
+  iv.timers.forEach(function(t){clearTimeout(t)});iv.timers=[];
+  document.getElementById('chat').innerHTML='';
+  document.getElementById('reportCard').hidden=true;document.getElementById('reportCard').innerHTML='';
+  document.getElementById('setupCard').hidden=true;
+  document.getElementById('ivStage').hidden=false;
+  document.getElementById('ivName').textContent=host[0];
+  document.getElementById('ivRole').textContent=host[1];
+  document.getElementById('ivEnd').hidden=false;
+  document.getElementById('ans').value='';
+  setIvSt('开场介绍',true);
+  bubble('iv','你好，我是本场面试官，叫我'+host[0]+'就行。放轻松，就当一次真实演练——我会按真实面试流程推进，每题答完给你复盘卡。<br>那我们开始：',700);
+  ivTimer(askQ,1900);
+}
+function askQ(){
+  var b=iv.bank[iv.idx];
+  setIvSt('第 '+(iv.idx+1)+'/'+iv.bank.length+' 题 · 提问中',true);
+  bubble('iv','<span class="qtag">'+b.tag+'</span>'+b.q,800);
+  ivTimer(function(){
+    setIvSt('第 '+(iv.idx+1)+'/'+iv.bank.length+' 题 · 聆听你的回答',false);
+    document.getElementById('ansbox').hidden=false;
+    document.getElementById('ans').focus();
+  },900);
+}
+function sendAns(){
+  var t=document.getElementById('ans');
+  var v=t.value.trim();
+  if(!v){t.focus();return}
+  bubble('me',esc(v).replace(/\n/g,'<br>'));
+  t.value='';
+  document.getElementById('ansbox').hidden=true;
+  iv.answered=(iv.answered||0)+1;
+  setIvSt('评估你的回答',true);
+  var b=iv.bank[iv.idx];
+  var num=/\d/.test(v), mei=(v.match(/我/g)||[]).length;
+  var fb='<div class="fbc"><h5>📋 复盘卡 · 第 '+(iv.idx+1)+'/'+iv.bank.length+' 题（'+b.tag+'）</h5>'+
+   '<div><b>这题在考察：</b>'+b.probe+'</div>'+
+   '<div style="margin-top:6px"><b>好答案的骨架：</b>'+b.skl+'</div>'+
+   '<div class="skl" style="margin-top:6px"><b>常见坑：</b>'+b.pit+'</div>'+
+   (num?'<div style="margin-top:8px;color:var(--ok)">✓ 检测到你的回答含具体数字/细节，比纯形容词强</div>':'<div style="margin-top:8px;color:var(--warn)">△ 没检测到数字——面试官最爱追问“具体多少”，下次答的时候带上</div>')+
+   (mei>6?'<div style="color:var(--warn);margin-top:3px">△ “我”出现 '+mei+' 次，试试让事实自己说话</div>':'')+
+   '<div style="margin-top:10px"><b style="font-size:12px">四项自查（勾选你觉得自己做到了的）：</b>'+
+   ['清晰：直接回答了问题','结构：有条理不发散','证据：有具体事例/数字','一致：和我的简历口径一致'].map(function(s,i){
+     return '<label class="checkbox"><input type="checkbox" data-q="'+iv.idx+'" data-k="'+i+'"> '+s+'</label>'
+   }).join('')+'</div></div>';
+  bubble('iv',fb,1000);
+  ivTimer(function(){
+    document.getElementById('chat').querySelectorAll('.fbc input[data-q="'+iv.idx+'"]').forEach(function(c){
+      c.addEventListener('change',function(){
+        iv.selfChecks[iv.idx]=iv.selfChecks[iv.idx]||[false,false,false,false];
+        iv.selfChecks[iv.idx][+c.dataset.k]=c.checked;
+      });
+    });
+    var nxt=document.createElement('div');nxt.id='nextRow';
+    nxt.style.textAlign='center';nxt.style.marginTop='6px';
+    if(iv.idx+1<iv.bank.length){
+      var btn=document.createElement('button');btn.className='btn small';btn.textContent='下一题 →';
+      btn.onclick=function(){nxt.remove();iv.idx++;askQ()};
+      nxt.appendChild(btn);document.getElementById('chat').appendChild(nxt);
+      setIvSt('第 '+(iv.idx+1)+'/'+iv.bank.length+' 题已复盘 · 点「下一题」继续',false);
+    }else{
+      var fin=document.createElement('button');fin.className='btn';fin.textContent='生成面试复盘报告';
+      fin.onclick=function(){finishIv(false)};nxt.appendChild(fin);document.getElementById('chat').appendChild(nxt);
+      setIvSt('题目全部答完 · 点「生成面试复盘报告」收尾',false);
+    }
+    document.getElementById('chat').scrollTop=document.getElementById('chat').scrollHeight;
+  },1100);
+}
+document.getElementById('sendAns').addEventListener('click',sendAns);
+document.getElementById('ans').addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();sendAns()}
+});
+/* —— 结束面试：随时可收场，立即生成本场复盘报告 —— */
+function finishIv(early){
+  if(!iv.running)return;
+  iv.running=false;
+  iv.timers.forEach(function(t){clearTimeout(t)});iv.timers=[];
+  var tp=document.getElementById('typing');if(tp)tp.remove();
+  var nr=document.getElementById('nextRow');if(nr)nr.remove();
+  document.getElementById('ansbox').hidden=true;
+  document.getElementById('ans').value='';
+  document.getElementById('ivEnd').hidden=true;
+  if(early){
+    bubble('iv','好的，今天就先到这里，辛苦了。本场答了 '+(iv.answered||0)+'/'+iv.bank.length+' 题——每一次开口都在攒手感，随时回来再练。');
+  }
+  setIvSt(early?'本场已提前结束':'本场面试完成',false);
+  document.getElementById('setupCard').hidden=false;
+  showReport();
+}
+document.getElementById('ivEnd').addEventListener('click',function(){
+  if(!iv.running)return;
+  if(confirm('确定结束本场面试？已答 '+(iv.answered||0)+'/'+iv.bank.length+' 题，结束后会立即生成本场复盘报告。'))
+    finishIv(true);
+});
+document.getElementById('startIv').addEventListener('click',startIv);
+function showReport(){
+  var keys=['清晰','结构','证据','一致'];
+  var cnt=[0,0,0,0];
+  var done=Object.keys(iv.selfChecks).length;
+  for(var q in iv.selfChecks){
+    iv.selfChecks[q].forEach(function(v,i){if(v)cnt[i]++});
+  }
+  var answered=iv.answered||0;
+  var html='<h3 style="margin-bottom:6px"><span class="ivrep">'+IV_FACE+'</span>面试复盘报告</h3>';
+  if(!answered){
+    html+='<div class="tip"><b>本场没有提交回答，还没有可复盘的数据。</b>点上方「开始面试」再练一场——答完每题勾一下「四项自查」，报告才有内容。</div>';
+  }else{
+    var denom=Math.max(done,1);
+    var weakest=cnt.indexOf(Math.min.apply(null,cnt));
+    html+='<p class="stat">作答 '+answered+'/'+iv.bank.length+' 题 · 自评勾选 '+done+' 题 · 四项表现：</p><div class="statbars">'+
+     keys.map(function(k,i){
+       var pct=Math.round(cnt[i]/denom*100);
+       return '<div class="sb"><span>'+k+'</span><div class="track"><div class="fill" style="width:'+pct+'%"></div></div><span>'+cnt[i]+'/'+denom+' 题 · '+pct+'%</span></div>'
+     }).join('')+'</div>'+
+     (done?'':'<p class="dim-note" style="margin-top:8px">本场没勾「四项自查」，四项按 0 计——下次答完勾一下，报告才准。</p>')+
+     '<div class="tip" style="margin-top:14px"><b>最需要补的一环：'+keys[weakest]+'。</b>'+
+     (weakest===0?'回答先给结论再展开，别铺垫半天。':weakest===1?'练习「总-分」结构：先一句话回答，再给两三个要点。':weakest===2?'把每个观点都挂在一个真实事例上，事例要有数字。':'面试回答必须和简历口径一致——这是背调式追问的命门，冲突即减分。')+
+     ' 把复盘卡的「好答案骨架」对着我刚才的回答改一遍，比再做十道新题有用。</div>'+
+     '<div style="margin-top:12px"><button class="btn" id="ivAgain">🔄 再练一场</button></div>';
+  }
+  var rc=document.getElementById('reportCard');
+  rc.innerHTML=html;rc.hidden=false;
+  var again=document.getElementById('ivAgain');
+  if(again)again.addEventListener('click',startIv);
+  rc.scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
